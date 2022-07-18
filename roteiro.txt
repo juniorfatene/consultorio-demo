@@ -1,0 +1,96 @@
+
+Projeto ConsultorioDemo:
+
+Passos:
+
+---------------------
+Configurando swagger:
+---------------------
+
+Instalar o package: Swashbuckle.AspNetCore
+
+Inserir na classe Startup:
+  - Em ConfigureServices:  
+		
+		services.AddSwaggerGen(c =>
+			{
+				c.SwaggerDoc("v1", new OpenApiInfo { Title = "Consultorio", Version = "v1" });
+			});
+			
+			
+  - Em Configure:
+		- Em env.IsDevelopment:
+			
+			app.UseSwagger();
+				app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Consultorio v1"));
+				
+				
+
+---------------------------
+Criando as entidades(models):		
+---------------------------
+
+Pode criar as entidades dentro de uma pasta "Models\entities"
+
+----------------
+Instalando o EF:
+----------------
+
+Instalar os pacotes:  EntityFrameworkCore e EntityFrameworkCore.Relational
+
+
+---------------------------------------------------------------------
+Criando a classe de contexto (classe que representa a base de dados):
+---------------------------------------------------------------------
+
+- Cria uma pasta separada, pode ser "Context"
+- Nomeia a classe como "NomeProjetoContext"
+- Configuração da classe
+
+
+-----------------------------------------
+Criando a connectionString na appSetings:
+-----------------------------------------
+
+"ConnectionStrings": {
+    "Default": "User ID=postgres;Password=Palmeiras@123;Host=localhost;Port=5432;Database=Consultorio;"
+  }
+  
+  
+---------------------------------------------------------------------------
+Inserindo package do provider de bancos de dados e configurando na Startup:  
+---------------------------------------------------------------------------
+
+- Configuração na startup
+
+
+------------------------------------
+Mapeamento das classes para migração:  
+------------------------------------
+
+- Cria uma pasta Maps , e dentro cria as classes de acordo com as entidades 
+- Sugestão: nome da classe - EntidadeMap
+- Criação dos mapeamentos(definições das tabelas: nome de colunas, tipos, relacionamentos...)
+
+
+-----------------------
+Execução do Migrations:
+-----------------------
+
+- Instalação dos packages : Microsoft.EntityFramework.Design e Microsoft.EntityFramework.Tools
+- Criar a base de dados no SGBD
+- Executar os comandos
+   - Add-Migration nomeMigration
+   - Update-Database
+   
+
+------------------------   
+Criando os repositórios:
+------------------------
+
+- aqui cria-se as interfaces e as classes de interfaces e repositórios   
+
+----------------------- 
+Criando os controllers:
+-----------------------
+   
