@@ -18,6 +18,7 @@ namespace ConsultorioDemo.Controllers
 		public PacienteController(IPacienteRepository repository)
 		{
 			_repository = repository;
+
 		}
 
 		[HttpGet]
